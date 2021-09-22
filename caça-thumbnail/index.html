@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Caça Thumbnail</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        h1{
+            text-align: center;
+            font-family: 'Open Sans', sans-serif;
+            color: #fff;
+            margin-bottom: 3rem;
+        }
+        body{
+            background-color: #d1581c;
+        }
+
+        .form-container{
+            padding: .5rem;
+            display: flex;
+        }
+
+        .form-container input{
+            flex: 1;
+            padding: 1.2rem;
+        }
+
+        button{
+            background-color: cadetblue;
+            color:#0a2081;
+            border: none;
+            font-size:1.23rem;
+            padding: .45rem;
+        }
+        .thumbnail-view{
+            display: flex;
+            flex-wrap: wrap;
+            padding: 10px;
+        }
+
+    </style>
+  </head>
+  <body>
+    <h1>Caça Thumbnail</h1>
+    <div class="form-container">
+        <input type="text" placeholder="Insira a URL do vídeo (Youtube)">
+        <button>Obter Thumbnail</button>
+    </div>
+
+    <div class="thumbnail-view">
+
+    </div>
+  </body>
+
+  <script>
+      const inputUrl = document.querySelector('input');
+      const button = document.querySelector('button');
+      const thumbview = document.querySelector('.thumbnail-view');
+
+
+        button.addEventListener('click' , ()=>{
+              const url = inputUrl.value;
+              const parametros = url.split("watch")[1];
+              const videoID = new URLSearchParams(parametros).get("v");
+              const thubnailURL = `https://img.youtube.com/vi/${videoID}/mqdefault.jpg`;
+              const img = document.createElement('img');
+              img.src = thubnailURL;
+              thumbview.appendChild(img);
+              inputUrl.value = '';
+        })
+
+
+
+     //`      
+
+
+
+  
+  </script>
+</html>
